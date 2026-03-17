@@ -167,9 +167,52 @@ function extractMeta(html, url) {
     get(/og:image" content="(.*?)"/i) ||
     get(/twitter:image" content="(.*?)"/i);
 
+  // Advanced metadata fields
+  const site_name =
+    get(/og:site_name" content="(.*?)"/i) ||
+    get(/name="application-name" content="(.*?)"/i);
+
+  const author =
+    get(/name="author" content="(.*?)"/i) ||
+    get(/article:author" content="(.*?)"/i) ||
+    get(/twitter:creator" content="(.*?)"/i);
+
+  const keywords =
+    get(/name="keywords" content="(.*?)"/i);
+
+  const theme_color =
+    get(/name="theme-color" content="(.*?)"/i);
+
+  const type =
+    get(/og:type" content="(.*?)"/i);
+
+  const locale =
+    get(/og:locale" content="(.*?)"/i);
+
+  const video =
+    get(/og:video" content="(.*?)"/i) ||
+    get(/og:video:url" content="(.*?)"/i);
+
+  const audio =
+    get(/og:audio" content="(.*?)"/i);
+
   const favicon = new URL("/favicon.ico", url).href;
 
-  return { title, description, image, favicon, url };
+  return {
+    title,
+    description,
+    image,
+    favicon,
+    site_name,
+    author,
+    keywords,
+    theme_color,
+    type,
+    locale,
+    video,
+    audio,
+    url
+  };
 }
 
 // 🛡️ VALIDATION
